@@ -1,6 +1,9 @@
 name: Import issue photos
 
 on:
+  push:
+    branches:
+      - import-photos-run
   workflow_dispatch:
 
 permissions:
