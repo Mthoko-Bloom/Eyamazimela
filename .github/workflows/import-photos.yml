@@ -1,0 +1,31 @@
+name: Import issue photos
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download attachments from issue 1
+        run: |
+          mkdir -p raw-photos
+          i=0
+          for id in 192f0d14-7833-4b31-908f-846b4c445249 86e495c6-6ce8-40d7-83b1-32d45f4f56af 0ea2f755-a2f3-45f1-a905-8846f5ada4ef f8c56d5b-8366-486e-8c1d-b16a0e7fe6d2 e5adae61-9e43-46e1-99ba-13bb9c42a9bd 2bd29656-2880-40f5-9111-93afacc86805 c787a69e-340b-4aad-82ec-f1a05bb4eec8 02fc87ae-7aa4-4516-9fe1-e741584f1764 8ed98bad-4247-4f03-a837-40a103f4ae85 63a74164-94f3-4309-9163-682ec967b386 c2278990-47f0-432f-8abe-a1f5746c0db6 b7a6b237-42f7-428a-904b-7f3b67b1d03c 58244fa2-1750-43df-9dbc-6df69a8f9b72 90201aeb-6119-48b2-aefd-fe6b3e22cd6e; do
+            i=$((i+1))
+            n=$(printf "%02d" $i)
+            curl -sL --retry 3 -o "raw-photos/img$n" "https://github.com/user-attachments/assets/$id"
+          done
+          file raw-photos/*
+          ls -la raw-photos/
+      - name: Push to temporary import branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add raw-photos
+          git commit -m "Import raw photos from issue #1 (temporary branch)"
+          git push --force origin HEAD:photo-import
