@@ -35,10 +35,13 @@ import {
 /*  Business constants                                                        */
 /* -------------------------------------------------------------------------- */
 
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 const BUSINESS = {
   name: "Eyamazimela",
   legalName: "Eyamazimela Pty Ltd",
   tagline: "We strive in making your special day perfect.",
+  taglineAlt: "We strike it right the first time.",
   phoneDisplay: "071 056 9739",
   phoneHref: "tel:+27710569739",
   whatsappHref: "https://wa.me/27710569739",
@@ -101,65 +104,63 @@ type PortfolioItem = {
   description: string;
 };
 
-// Realistic premium placeholders. Swap the `src` values for the real
-// Facebook photos when ready — each falls back to a branded tile if a
-// remote image ever fails to load.
+// Real photographs of Eyamazimela events, supplied by the founder.
 const PORTFOLIO: PortfolioItem[] = [
   {
     category: "decor",
-    src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=80",
-    title: "Elegant Table Setting",
+    src: `${BASE}/images/decor-banquet.jpg`,
+    title: "Gold & Timber Banquet",
     description:
-      "Premium catering, décor and photography setup by Eyamazimela Pty Ltd in Hammarsdale.",
-  },
-  {
-    category: "catering",
-    src: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1200&q=80",
-    title: "Professional Event Catering",
-    description:
-      "High-quality food and buffet presentations curated for special celebrations.",
-  },
-  {
-    category: "cakes",
-    src: "https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=1200&q=80",
-    title: "Custom Baked Cakes",
-    description:
-      "Artisanal baking and custom-designed tiered cakes tailored to your event theme.",
-  },
-  {
-    category: "photography",
-    src: "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?auto=format&fit=crop&w=1200&q=80",
-    title: "Premium Media Coverage",
-    description:
-      "Striving to make your special day perfect with crystal-clear event photography.",
+      "Cross-back gold chairs and raw timber tables styled for a traditional family celebration.",
   },
   {
     category: "decor",
-    src: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1200&q=80",
-    title: "Grand Pavilion Styling",
+    src: `${BASE}/images/decor-tables.jpg`,
+    title: "Heritage Table Story",
     description:
-      "Full-room draping, stage design and floral styling for large-scale celebrations.",
+      "Shweshwe runners, potjie centrepieces and amber napkins — proudly South African styling by Eyamazimela.",
   },
   {
     category: "catering",
-    src: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80",
-    title: "Fine Plated Service",
+    src: `${BASE}/images/catering-drumsticks.jpg`,
+    title: "Sticky Glazed Drumsticks",
     description:
-      "Chef-plated courses served by trained staff, from starters to celebration desserts.",
+      "Slow-glazed chicken drumsticks, finished with fresh herbs and served straight to the buffet.",
+  },
+  {
+    category: "catering",
+    src: `${BASE}/images/catering-pasta.jpg`,
+    title: "Creamy Chicken & Mushroom Pasta",
+    description:
+      "Rich, comforting penne prepared in bulk without losing the home-cooked touch.",
+  },
+  {
+    category: "catering",
+    src: `${BASE}/images/catering-desserts.jpg`,
+    title: "Strawberry Dessert Cups",
+    description:
+      "Individual layered dessert cups, portioned and presented for effortless service.",
   },
   {
     category: "cakes",
-    src: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=1200&q=80",
-    title: "Tiered Celebration Cake",
+    src: `${BASE}/images/cakes-baby.jpg`,
+    title: "Welcome-Baby Shower Cake",
     description:
-      "Statement centrepiece cakes finished with detail work matched to your colour story.",
+      "A powder-blue baby shower centrepiece with hand-placed pearls, blocks and bows.",
+  },
+  {
+    category: "cakes",
+    src: `${BASE}/images/cakes-soccer.jpg`,
+    title: "Football-Fan Birthday Cake",
+    description:
+      "A custom club-themed birthday cake — any passion, turned into a showstopper.",
   },
   {
     category: "photography",
-    src: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80",
-    title: "Moments, Beautifully Kept",
+    src: `${BASE}/images/photography-event.jpg`,
+    title: "Captured by Our Lens",
     description:
-      "Documentary-style coverage that holds onto the small moments as well as the big ones.",
+      "Professional coverage of the events we style — crisp, warm and ready to share.",
   },
 ];
 
@@ -557,16 +558,16 @@ function Hero() {
         <div className="relative hidden lg:block">
           <div className="relative ml-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-[2rem] border border-gold-500/20 shadow-luxe">
             <ImageWithFallback
-              src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1000&q=80"
-              alt="Elegant event table styled by Eyamazimela"
+              src={`${BASE}/images/decor-marquee.jpg`}
+              alt="Draped marquee interior with red-carpet aisle, styled by Eyamazimela"
               category="decor"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-forest-950/70 via-transparent to-transparent" />
           </div>
           <div className="absolute -bottom-8 -left-6 aspect-square w-44 overflow-hidden rounded-3xl border border-gold-500/25 shadow-luxe">
             <ImageWithFallback
-              src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=700&q=80"
-              alt="Custom celebration cake"
+              src={`${BASE}/images/cakes-baby.jpg`}
+              alt="Custom baby shower cake by Eyamazimela"
               category="cakes"
             />
           </div>
@@ -722,8 +723,8 @@ function Portfolio() {
         </div>
 
         <p className="mt-10 text-center text-sm text-cream/50">
-          Placeholder imagery — ready to be swapped for {BUSINESS.name}&rsquo;s real
-          Facebook gallery.
+          Every photo above is a real Eyamazimela event — styled, catered, baked and
+          captured by our team.
         </p>
       </div>
     </section>
@@ -793,7 +794,7 @@ function Founder() {
           <div className="relative mx-auto max-w-md">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-forest-800/10 shadow-luxe">
               <ImageWithFallback
-                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1000&q=80"
+                src={`${BASE}/images/pearl.jpg`}
                 alt="Portrait of founder Pearl Nonhlanhla Mnguni"
                 category="photography"
               />
@@ -801,7 +802,7 @@ function Founder() {
             <div className="absolute -bottom-6 left-1/2 flex w-[86%] -translate-x-1/2 items-center gap-3 rounded-2xl border border-gold-500/30 bg-white px-5 py-4 shadow-luxe">
               <Quote className="h-8 w-8 shrink-0 text-gold-500" />
               <p className="font-display text-sm italic leading-snug text-forest-900">
-                &ldquo;{BUSINESS.tagline}&rdquo;
+                &ldquo;{BUSINESS.taglineAlt}&rdquo;
               </p>
             </div>
           </div>
@@ -1220,8 +1221,8 @@ function ContactFooter() {
           <p className="text-xs text-cream/50">
             &copy; {year} {BUSINESS.legalName}. All rights reserved.
           </p>
-          <p className="text-xs text-cream/40">
-            Crafted with care &middot; {BUSINESS.addressLine2}, KZN
+          <p className="text-xs italic text-cream/40">
+            &ldquo;{BUSINESS.taglineAlt}&rdquo; &middot; {BUSINESS.addressLine2}, KZN
           </p>
         </div>
       </div>
