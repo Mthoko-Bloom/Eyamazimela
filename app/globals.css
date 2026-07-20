@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-cream text-ink font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: #C9A24B;
+    color: #082B20;
+  }
+
+  /* Visible, on-brand keyboard focus */
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 2px solid #C9A24B;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest2 text-gold-600;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-forest-950 transition-all duration-300 hover:bg-gold-400 hover:shadow-luxe active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-gold-500/60 px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-gold-300 transition-all duration-300 hover:border-gold-400 hover:bg-gold-500/10 active:scale-[0.98];
+  }
+
+  .btn-outline-dark {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-forest-800/25 px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-forest-800 transition-all duration-300 hover:border-forest-800/50 hover:bg-forest-800/5 active:scale-[0.98];
+  }
+
+  .field-label {
+    @apply mb-2 block text-sm font-semibold text-forest-800;
+  }
+
+  .field-input {
+    @apply w-full rounded-xl border border-forest-800/15 bg-white px-4 py-3 text-ink shadow-sm outline-none transition placeholder:text-forest-800/40 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/25;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gold-gradient-text {
+    background-image: linear-gradient(100deg, #E7D199, #C9A24B 45%, #F0E2BC);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hairline {
+    height: 1px;
+    background-image: linear-gradient(90deg, transparent, rgba(201, 162, 75, 0.6), transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
